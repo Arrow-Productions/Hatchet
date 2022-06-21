@@ -1,13 +1,34 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "windows build",
-            "command": "${workspaceFolder}/build.bat",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe build active file",
+			"command": "C:/msys64/mingw64/bin/g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"-I${workspaceFolder}/include/vulkanInclude",
+				"-I${workspaceFolder}/include/glfwInclude",
+				"-I${workspaceFolder}/include/glmInclude",
+				"${file}",
+				"-L${workspaceFolder}/libraries/vulkanLibs",
+				"-L${workspaceFolder}/libraries/glfwLibs",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}.exe",
+				"-lglfw3dll",
+				"-lglfw3",
+				"-lvulkan-1",
+				"-lgdi32"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: C:/msys64/mingw64/bin/g++.exe"
+		}
+	]
 }

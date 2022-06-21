@@ -1,13 +1,32 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "windows build",
-            "command": "${workspaceFolder}/build.bat",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe build active file",
+			"command": "C:/msys64/mingw64/bin/g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"-IC:/VulkanSDK/1.3.211.0/Include",
+				"-IC:/Users/Azael/Documents/glfw-3.3.7.bin.WIN64/glfw-3.3.7.bin.WIN64/include",
+				"-IC:/Users/Azael/Documents/glm",
+				"${file}",
+				"-LC:/VulkanSDK/1.3.211.0/Lib",
+				"-LC:/Users/Azael/Documents/glfw-3.3.7.bin.WIN64/glfw-3.3.7.bin.WIN64/lib-vc2019",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}.exe",
+				"-lglfw3.lib",
+				"-lvulkan-1.lib"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: C:/msys64/mingw64/bin/g++.exe"
+		}
+	]
 }

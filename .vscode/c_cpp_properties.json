@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/VulkanSDK/1.3.211.0/Include",
+				"C:/Users/Azael/Documents/glfw-3.3.7.bin.WIN64/glfw-3.3.7.bin.WIN64/include",
+				"C:/Users/Azael/Documents/glm",
+				"C:/VulkanSDK/1.3.211.0/Lib",
+				"C:/Users/Azael/Documents/glfw-3.3.7.bin.WIN64/glfw-3.3.7.bin.WIN64/lib-vc2019"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22000.0",
+            "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}

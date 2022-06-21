@@ -16,8 +16,10 @@
 				"-LC:/Users/Azael/Documents/glfw-3.3.7.bin.WIN64/glfw-3.3.7.bin.WIN64/lib-vc2019",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}.exe",
-				"-lglfw3.lib",
-				"-lvulkan-1.lib"
+				"-lglfw3dll",
+				"-lglfw3",
+				"-lvulkan-1",
+				"-lgdi32"
 			],
 			"options": {
 				"cwd": "${fileDirname}"

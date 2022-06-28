@@ -1,15 +1,20 @@
+// Vulkan Libs
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
+// Basic C++ Libs
 #include <iostream>
 #include <stdexcept>
 #include <vector>
 #include <cstring>
 #include <cstdlib>
+#include <optional>
 
-const uint32_t WIDTH = 800;
-const uint32_t HEIGHT = 600;
+// Constant Dimension Temporary
+const uint32_t WIDTH = 1080;
+const uint32_t HEIGHT = 720;
 
+// Debug Crap
 const std::vector<const char*> validationLayers = {
     "VK_LAYER_KHRONOS_validation"
 };
@@ -36,8 +41,18 @@ void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
     }
 }
 
+struct QueueFamilyIndices {
+    std::optional<uint32_t> graphicsFamily;
+
+    bool isComplete() {
+        return graphicsFamily.has_value();
+    }
+};
+
+// Program Class
 class Hatchet {
 public:
+    // Run function
     void run() {
         initWindow();
         initVulkan();
@@ -46,11 +61,15 @@ public:
     }
 
 private:
+    // Program variables
     GLFWwindow* window;
 
     VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
+    
+    VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 
+    // GLFW Window Instantiation
     void initWindow() {
         glfwInit();
 
@@ -60,17 +79,21 @@ private:
         window = glfwCreateWindow(WIDTH, HEIGHT, "Hatchet", nullptr, nullptr);
     }
 
+    // Vulkan Instantiation
     void initVulkan() {
         createInstance();
         setupDebugMessenger();
+        pickPhysicalDevice();
     }
 
+    // Checks if Window is closing
     void mainLoop() {
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents();
         }
     }
 
+    // Destroys The Program
     void cleanup() {
         if (enableValidationLayers) {
             DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
@@ -83,6 +106,7 @@ private:
         glfwTerminate();
     }
 
+    // Program Data
     void createInstance() {
         if (enableValidationLayers && !checkValidationLayerSupport()) {
             throw std::runtime_error("validation layers requested, but not available!");
@@ -122,6 +146,7 @@ private:
         }
     }
 
+    // Debugging Functions
     void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo) {
         createInfo = {};
         createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
@@ -139,6 +164,60 @@ private:
         if (CreateDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS) {
             throw std::runtime_error("failed to set up debug messenger!");
         }
+    }
+
+    void pickPhysicalDevice() {
+        uint32_t deviceCount = 0;
+        vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+
+        if (deviceCount == 0) {
+            throw std::runtime_error("failed to find GPUs with Vulkan support!");
+        }
+
+        std::vector<VkPhysicalDevice> devices(deviceCount);
+        vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+        for (const auto& device : devices) {
+            if (isDeviceSuitable(device)) {
+                physicalDevice = device;
+                break;
+            }
+        }
+
+        if (physicalDevice == VK_NULL_HANDLE) {
+            throw std::runtime_error("failed to find a suitable GPU!");
+        }
+    }
+
+    bool isDeviceSuitable(VkPhysicalDevice device) {
+        QueueFamilyIndices indices = findQueueFamilies(device);
+
+        return indices.isComplete();
+    }
+
+    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) {
+        QueueFamilyIndices indices;
+
+        uint32_t queueFamilyCount = 0;
+        vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+
+        std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+        vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+
+        int i = 0;
+        for (const auto& queueFamily : queueFamilies) {
+            if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+                indices.graphicsFamily = i;
+            }
+
+            if (indices.isComplete()) {
+                break;
+            }
+
+            i++;
+        }
+
+        return indices;
     }
 
     std::vector<const char*> getRequiredExtensions() {
@@ -187,6 +266,7 @@ private:
     }
 };
 
+// Hatchet Function
 int main() {
     Hatchet app;
 

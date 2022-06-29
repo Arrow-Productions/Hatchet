@@ -12,11 +12,12 @@
 				"-I${workspaceFolder}/include/vulkanInclude",
 				"-I${workspaceFolder}/include/glfwInclude",
 				"-I${workspaceFolder}/include/glmInclude",
-				"${file}",
+				"-I${workspaceFolder}/src",
+				"${workspaceFolder}/src/main.cpp",
 				"-L${workspaceFolder}/libraries/vulkanLibs",
 				"-L${workspaceFolder}/libraries/glfwLibs",
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}.exe",
+				"${workspaceFolder}/src/main.exe",
 				"-lglfw3dll",
 				"-lglfw3",
 				"-lvulkan-1",
@@ -30,6 +31,24 @@
 			],
 			"group": "build",
 			"detail": "compiler: C:/msys64/mingw64/bin/g++.exe"
+		},{
+			"type":"shell",
+			"label": "Compiler Vert Shader",
+			"command": "${workspaceFolder}/bin/vulkanBin/glslc.exe",
+			"args": [
+				"${workspaceFolder}/src/shaders/shader.vert",
+				"-o",
+				"${workspaceFolder}/src/shaders/vert.spv"
+			]
+		},{
+			"type":"shell",
+			"label": "Compiler Frag Shader",
+			"command": "${workspaceFolder}/bin/vulkanBin/glslc.exe",
+			"args": [
+				"${workspaceFolder}/src/shaders/shader.frag",
+				"-o",
+				"${workspaceFolder}/src/shaders/frag.spv"
+			]
 		}
 	]
 }

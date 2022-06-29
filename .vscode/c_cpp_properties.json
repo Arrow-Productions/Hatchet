@@ -8,7 +8,8 @@
                 "${workspaceFolder}/include/glfwInclude",
                 "${workspaceFolder}/include/glmInclude",
                 "${workspaceFolder}/libraries/vulkanLibs",
-                "${workspaceFolder}/libraries/glfwLibs"
+                "${workspaceFolder}/libraries/glfwLibs",
+                "${workspaceFolder}/bin/vulkanBin"
             ],
             "defines": [
                 "_DEBUG",

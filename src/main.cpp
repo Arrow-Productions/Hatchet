@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 // Basic C++ Libs
+#include <filesystem>
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -14,6 +15,7 @@
 #include <limits>
 #include <optional>
 #include <set>
+
 
 // Constant Dimension Temporary
 const uint32_t WIDTH = 1080;
@@ -395,8 +397,8 @@ private:
     }
 
     void createGraphicsPipeline() {
-        auto vertShaderCode = readFile("V:/Arrow Productions/Current Projects/Hatchet/src/shaders/vert.spv"); // HEY! You need to copy the path for the shaders to make sure that your program works
-        auto fragShaderCode = readFile("V:/Arrow Productions/Current Projects/Hatchet/src/shaders/frag.spv"); // HEY! You need to copy the path for the shaders to make sure that your program works
+        auto vertShaderCode = readFile("V:/Arrow Productions/Current Projects/Hatchet/src/shaders/vert.spv");
+        auto fragShaderCode = readFile("V:/Arrow Productions/Current Projects/Hatchet/src/shaders/frag.spv");
 
         VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
         VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
@@ -670,7 +672,7 @@ private:
     }
 
     static std::vector<char> readFile(const std::string& filename) {
-        std::ifstream file(filename, std::ios::ate | std::ios::binary);
+        std::ifstream file(std::filesystem::current_path() / filename, std::ios::ate | std::ios::binary);
 
 
         if (!file.is_open()) {
@@ -698,6 +700,7 @@ private:
 
 // Hatchet Function
 int main() {
+    std::cout << "current root path is: " << std::filesystem::current_path() << "\n";
     Hatchet app;
 
     try {

@@ -7,6 +7,7 @@
                 "${workspaceFolder}/include/vulkanInclude",
                 "${workspaceFolder}/include/glfwInclude",
                 "${workspaceFolder}/include/glmInclude",
+                "${workspaceFolder}/src/shaders",
                 "${workspaceFolder}/libraries/vulkanLibs",
                 "${workspaceFolder}/libraries/glfwLibs",
                 "${workspaceFolder}/bin/vulkanBin"

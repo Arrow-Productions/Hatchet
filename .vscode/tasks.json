@@ -17,14 +17,14 @@
 				"-L${workspaceFolder}/libraries/vulkanLibs",
 				"-L${workspaceFolder}/libraries/glfwLibs",
 				"-o",
-				"${workspaceFolder}/src/main.exe",
+				"${workspaceFolder}/src/Hatchet.exe",
 				"-lglfw3dll",
 				"-lglfw3",
 				"-lvulkan-1",
 				"-lgdi32"
 			],
 			"options": {
-				"cwd": "${fileDirname}"
+				"cwd": "${workspaceFolder}"
 			},
 			"problemMatcher": [
 				"$gcc"

@@ -58,7 +58,8 @@
         "fstream": "cpp",
         "chrono": "cpp",
         "codecvt": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "filesystem": "cpp"
     },
     "C_Cpp.dimInactiveRegions": false,
     "C_Cpp.workspaceSymbols": "All"

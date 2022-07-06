@@ -20,6 +20,7 @@
 // Constant Dimension Temporary
 const uint32_t WIDTH = 1080;
 const uint32_t HEIGHT = 720;
+const auto PATH = std::filesystem::current_path();
 
 const int MAX_FRAMES_IN_FLIGHT = 2;
 
@@ -468,8 +469,8 @@ private:
     }
 
     void createGraphicsPipeline() {
-        auto vertShaderCode = readFile("V:/Arrow Productions/Current Projects/Hatchet/src/shaders/vert.spv");
-        auto fragShaderCode = readFile("V:/Arrow Productions/Current Projects/Hatchet/src/shaders/frag.spv");
+        auto vertShaderCode = readFile("src/shaders/vert.spv");
+        auto fragShaderCode = readFile("src/shaders/frag.spv");
 
         VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
         VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
@@ -922,7 +923,7 @@ private:
     }
 
     static std::vector<char> readFile(const std::string& filename) {
-        std::ifstream file(std::filesystem::current_path() / filename, std::ios::ate | std::ios::binary);
+        std::ifstream file(PATH / filename, std::ios::ate | std::ios::binary);
 
 
         if (!file.is_open()) {
@@ -950,6 +951,7 @@ private:
 
 // Hatchet Function
 int main() {
+    std::cout << PATH << std::endl;
     Hatchet app;
 
     try {

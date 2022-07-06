@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/src/Hatchet.exe",
             "args": [],
             "stopAtEntry":false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

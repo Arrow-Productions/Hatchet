@@ -7,6 +7,8 @@
                 "${workspaceFolder}/include/vulkanInclude",
                 "${workspaceFolder}/include/glfwInclude",
                 "${workspaceFolder}/include/glmInclude",
+                "${workspaceFolder}/include/stb-master",
+                "${workspaceFolder}/include/tinyobjloader-master",
                 "${workspaceFolder}/src/shaders",
                 "${workspaceFolder}/libraries/vulkanLibs",
                 "${workspaceFolder}/libraries/glfwLibs",

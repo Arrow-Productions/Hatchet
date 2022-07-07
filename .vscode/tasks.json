@@ -12,6 +12,8 @@
 				"-I${workspaceFolder}/include/vulkanInclude",
 				"-I${workspaceFolder}/include/glfwInclude",
 				"-I${workspaceFolder}/include/glmInclude",
+				"-I${workspaceFolder}/include/stb-master",
+				"-I${workspaceFolder}/include/tinyobjloader-master",
 				"-I${workspaceFolder}/src/shaders",
 				"${workspaceFolder}/src/main.cpp",
 				"-L${workspaceFolder}/libraries/vulkanLibs",

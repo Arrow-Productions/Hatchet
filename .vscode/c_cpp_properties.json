@@ -10,6 +10,7 @@
                 "${workspaceFolder}/include/stb-master",
                 "${workspaceFolder}/include/tinyobjloader-master",
                 "${workspaceFolder}/src/shaders",
+                "${workspaceFolder}/src/headers",
                 "${workspaceFolder}/libraries/vulkanLibs",
                 "${workspaceFolder}/libraries/glfwLibs",
                 "${workspaceFolder}/bin/vulkanBin"
